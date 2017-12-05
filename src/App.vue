@@ -38,6 +38,7 @@ export default {
   },
   computed: {
     total: function () {
+      this.$ga.event('Calculations', 'Fee', 'fee')
       return ((this.courtFee * this.courtHours + this.memberFee * this.people) * (this.taxRate + 1)).toFixed(2)
     },
     totalSplit: function () {
