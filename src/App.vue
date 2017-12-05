@@ -38,10 +38,10 @@ export default {
   },
   computed: {
     total: function () {
-      return (this.courtFee * this.courtHours + this.memberFee * this.people) * (this.taxRate + 1)
+      return ((this.courtFee * this.courtHours + this.memberFee * this.people) * (this.taxRate + 1)).toFixed(2)
     },
     totalSplit: function () {
-      return (this.total / this.people)
+      return Math.ceil(this.total / this.people)
     }
   }
 }
