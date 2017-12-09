@@ -1,7 +1,7 @@
 # badminton-fee-split
 Split bills for court rentals https://badminton-fee-split.herokuapp.com/
 
-> A Vue.js project
+A Vue.js project
 
 ## Build Setup
 
