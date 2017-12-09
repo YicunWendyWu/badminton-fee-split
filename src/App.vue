@@ -1,26 +1,32 @@
 <template lang="pug">
 .app#app
-  p
+  div
     div Court fee per hour
     input(v-model.number="courtFee" type="number")
-  p
-    div Court hours
+  div
+    div Total court hours
     input(v-model.number="courtHours" type="number")
-  p
+  div
     div Member fee per person
     input(v-model.number="memberFee" type="number")
-  p
+  div
     div Tax rate
     input(v-model.number="taxRate" type="number" step="0.01")
-  p
-    div Number of people
-    input(v-model.number="people" type="number")
-  p
+  div
+    div Number of non-members
+    input(v-model.number="peopleNonMembers" type="number")
+  div
+    div Number of members
+    input(v-model.number="peopleMembers" type="number")
+  div
     div Total
     div {{ total }}
-  p
-    div Each person pays
-    div {{ totalSplit }}
+  div(v-if="peopleNonMembers > 0")
+    div Each non-member pays
+    div {{ nonMemberSplit }}
+  div(v-if="peopleMembers > 0")
+    div Each member pays
+    div {{ memberSplit }}
 </template>
 
 <script>
@@ -33,16 +39,35 @@ export default {
       courtHours: 1,
       memberFee: 3,
       taxRate: 0.13,
-      people: 2
+      peopleNonMembers: 2,
+      peopleMembers: 0
     }
   },
   computed: {
-    total: function () {
-      this.$ga.event('Calculations', 'Fee', 'fee')
-      return ((this.courtFee * this.courtHours + this.memberFee * this.people) * (this.taxRate + 1)).toFixed(2)
+    people: function () {
+      return this.peopleNonMembers + this.peopleMembers
     },
-    totalSplit: function () {
-      return Math.ceil(this.total / this.people)
+    courtTotal: function () {
+      var fee = (this.courtFee * this.courtHours) * (this.taxRate + 1)
+      this.$ga.event('Calculations', 'Court', fee)
+      return fee
+    },
+    courtPerPerson: function () {
+      return (this.courtTotal / this.people)
+    },
+    memberFeeTotal: function () {
+      var fee = (this.memberFee * this.peopleNonMembers) * (this.taxRate + 1)
+      this.$ga.event('Calculations', 'MemberFee', fee)
+      return fee
+    },
+    total: function () {
+      return (this.courtTotal + this.memberFeeTotal).toFixed(2)
+    },
+    nonMemberSplit: function () {
+      return Math.ceil(this.courtPerPerson + this.memberFee * (1 + this.taxRate))
+    },
+    memberSplit: function () {
+      return Math.ceil(this.courtPerPerson)
     }
   }
 }
