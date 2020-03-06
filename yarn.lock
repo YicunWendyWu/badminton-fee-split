@@ -6968,9 +6968,9 @@ void-elements@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/void-elements/-/void-elements-2.0.1.tgz#c066afb582bb1cb4128d60ea92392e94d5e9dbec"
 
-vue-analytics@^5.20.2:
-  version "5.20.2"
-  resolved "https://registry.yarnpkg.com/vue-analytics/-/vue-analytics-5.20.2.tgz#ace46bda3bf2d872f4099046cb30a7576b6f6951"
+vue-analytics@^5.22.1:
+  version "5.22.1"
+  resolved "https://registry.yarnpkg.com/vue-analytics/-/vue-analytics-5.22.1.tgz#9d6b32da56daee1b9dfb23a267b50349a03f710f"
 
 vue-hot-reload-api@^2.3.0:
   version "2.3.3"
