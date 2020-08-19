@@ -57,7 +57,7 @@
     "webpack": "^3.12.0",
     "webpack-bundle-analyzer": "^3.8.0",
     "webpack-dev-server": ">=3.11.0",
-    "webpack-merge": "^4.2.2"
+    "webpack-merge": "^5.1.2"
   },
   "engines": {
     "node": ">= 4.0.0",
